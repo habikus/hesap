@@ -1,0 +1,143 @@
+<style>
+ * {
+    box-sizing: border-box;
+    /*PADDİNG VE BORDER İÇTEN YER */
+  }
+  
+ .fatay{
+ margin:1px 0px 1px 5px; 
+ padding:2px;
+ background-color:#5f9ea0;
+ cursor:pointer;
+ background-color: lightgreen;
+ width:20%;
+ } 
+ 
+ .fatayun{
+  margin:1px 0px 1px 1px; 
+ background-color:#5f9ea0;
+ cursor:pointer;
+ background-color: lightblue;
+  width:55%;
+ } 
+ .urunadi{
+    width:55%; 
+ }
+ .miktar{
+    width:12%; 
+    text-align:right;
+ }
+ .fiyat{
+    width:12%; 
+    text-align:right;
+ }
+  .tutar{
+    width:13%; 
+    text-align:right;
+ }
+ .gToplam{
+     text-align:right;
+ }
+ .fatekran{
+     background-color: lightyellow;
+     border: 1px solid gray;
+ } 
+ .satirbicim{
+     border-bottom: 1px solid gray;
+     background-color: lightyellow;
+ } 
+  
+</style>  
+
+<div class="container">
+    <h1>HAYDİ BİSMİLLAH - İNDEX SAYFASIDIR</h1>
+    <hr>
+ 
+    <hr>
+    <button onclick="yukle()">HESAPLAR</button> | <button onclick="fatyukle()">FATURALAR</button>
+    <hr>
+    <div class="row">
+     <div id="cariler" class="col-6 p-0"> </div>   
+     <div id="fatayrinti" class="col-6 fatekran"> </div>
+    </div>
+    
+    <br>
+
+    
+</div>
+
+<script>
+ var yollar = "/hesap" 
+ 
+   $(document).ready(function () {  });
+   
+   function yukle(){
+ 
+          $.ajax({
+                type: 'POST',
+                url: yollar + "/cariYukle",
+                async:false,
+                success: function (data) {
+ 
+                    document.getElementById("cariler").innerHTML = ""; 
+                    document.getElementById("fatayrinti").innerHTML = ""; 
+                    
+                    for ( var i = 0; i < data.length; i++) {
+                         $('#cariler').append('<div class="row"><div class="fatay">'+i+" --> "+ data[i].CARIKOD+'</div> <div class="fatayun">'+ data[i].UNVAN+'</div></div>') 
+                       } 
+                 }  
+                });
+   }
+   
+   function fatyukle(){
+ 
+          $.ajax({
+                type: 'POST',
+                url: yollar + "/fatYukle",
+                async:false,
+                success: function (data) { 
+                document.getElementById("cariler").innerHTML = "";  
+                for ( var i = 0; i < data.length; i++) {
+                   $('#cariler').append('<div class="row"><div onclick="dokunGetir('
+                   + data[i].FISNO +')" class="fatay">'
+                   + data[i].GENEL+'</div> <div class="fatayunXX">'
+                   + data[i].UNVAN+'</div><div>' 
+                   + data[i].TARIH+'</div> </div>') 
+                  }  
+                 }  
+                });    
+   }
+   
+   function dokunGetir(fisno){
+          var t = 0;
+          $.ajax({
+                type: 'POST',
+                url: yollar + "/fatAyrintiYukle",
+                async:false,
+                data: {
+                      fisno: fisno
+                      },
+                success: function (data) { 
+                document.getElementById("fatayrinti").innerHTML = "";  
+                for ( var i = 0; i < data.length; i++) {
+                   $('#fatayrinti').append('<div class="row satirbicim"><div onclick="dokunGetir('+ data[i].FISNO +')" class="urunadi">'
+                   + data[i].MALADI+'</div> <div class="miktar">'
+                   + data[i].MIKTAR+'</div> <div class="fiyat">'
+                   + data[i].FIYAT+'</div> <div class="tutar">'
+                   + data[i].TUTAR+'</div> </div>');
+                   
+                  // t = t + parseInt(data[i].TUTAR);
+                   //t = t +  parseDouble(data[i].TUTAR);
+                  t = t + data[i].TUTAR.valueOf();
+                   
+                  }  
+                   //  $('#fatayrinti').append('<hr>');
+                   $('#fatayrinti').append('<div class="gToplam">TOPLAM : '+ t +'</div>');
+                   
+                 }  
+                }); 
+   }
+   
+
+   
+</script>

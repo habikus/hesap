@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HESAP KİTAP</title>
+ 
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" /> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+  
+  <!--datatables.net-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css" />
+  <link type="text/css" href="//cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css" rel="stylesheet">
+
+  <!--toastr-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <!--sweetalert-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <!--fontawesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <link rel="stylesheet" href="css/site.css">
+
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #ff6600;;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 19px;
+}
+
+.topnav a:hover {
+  background-color: #000;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #2f4f4f;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+  
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}  
+  
+    footer {
+      position: fixed;
+      height: 40px;
+      bottom: 0;
+      width: 100%;
+    }
+
+ 
+  </style>
+
+</head>
+
+<body>
+<div style=" background-color:#ff6600">
+    
+<div class="container" style="position: relative;background-color:#ff6600">  
+ 
+     <div class="topnav" id="myTopnav">
+        <a class="active" href="/hesap"><i class="fa fa-fw fa-home"></i>Ana Sayfa</a>
+ 
+        <a href="hakkimizda"><i class="far fa-address-card"></i>Hakkımızda</a>
+        <!-- <a href="giris" id="giris"><i class="fa fa-fw fa-user"></i>Giriş</a> -->
+        <a href="cikis" id="cikis"><i class="fa fa-fw fa-user"></i>Çıkış</a>
+
+      <div style="padding-right:30px" >
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+      </div>
+      <span  class="d-flex flex-row-reverse" 
+      style="position: absolute;top: 8px;right: 16px;font-size: 18px;
+      "> <img src="images/logoSefkat.jpg" width="32"></span> 
+      </div> 
+  
+</div>  
+
+</div>   
+
+
+<div class="col-12 p-0"> 
+      <main>
+        <%- body%>
+      </main>
+</div>
+  <hr>
+
+   
+  <footer class="footer navbar-fixed-bottom">
+     
+    <h5 style="margin-top:7px; color: aliceblue;"><span id="kim"> 
+    <!--   kisi   -->
+  
+    <span style="">
+      <!--  --> 
+        </span>  Şefkat Okulları Tüm Hakları saklıdır</h5>
+
+  </footer>
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+</script>  
+ 
+    <!--     <script type="text/javascript" src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>   -->
+    <script src="js/jquery.dataTables.js"></script>   
+      
+  
+      <!-- bu dosyaya eklenen _fnEscapeRegex ... kodları sayesinde Türkçe karakterli arama Elhamdülillah --  -->
+ 
+  
+  
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <!--toastr-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+  </script>
+  <!--sweetalert-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
+    integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
+    crossorigin="anonymous"></script>
+
+
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="//cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+  <script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
+
+  <!--serializeJSON-->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.min.js"></script>
+
+  <!-- Include jquery mark ( for highlighting text )-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/6.1.0/jquery.mark.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+
+
+    <script>
+   //   <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/turkish-string.js"> Türkçe sort içindir, bunun yerine kodlar sayfaya yerleştirildi
+     // document.getElementById('cikis').style.visibility = 'visible';
+    //  document.getElementById('giris').style.visibility = 'hidden';
+    //document.getElementById('kim').innerHTML=session.adSoySes;
+   //  document.getElementById('#kim').innerHTML=durum;
+    </script>
+</body>
+
+</html>
